@@ -31,15 +31,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %makeinstall  game_datadir=$RPM_BUILD_ROOT%{_gamesdatadir}/XBlast-TNT
 
-mkdir -p %{buildroot}%{_menudir}
-install -d %{buildroot}%{_menudir}
-cat <<EOF > %{buildroot}%{_menudir}/%{name}
-?package(%{name}):command="%{_bindir}/%{name}" \
-                  icon="arcade_section.png" \
-                  needs="x11" \
-                  section="Amusement/Arcade" \
-                  title="X blast"\
-                  longtitle="%{summary}"
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
+cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
+[Desktop Entry]
+Type=Application
+Exec=%{_bindir}/%{name}
+Icon=arcade_section
+Categories=Game;ArcadeGame;
+Name=X blast
+Comment=%{summary}
 EOF
 
 %post
@@ -60,5 +61,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_gamesdatadir}/XBlast-TNT/image/
 %{_gamesdatadir}/XBlast-TNT/sounds/
 %dir %{_gamesdatadir}/XBlast-TNT
-%_menudir/*
+%{_datadir}/applications/mandriva-*.desktop
 
