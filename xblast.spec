@@ -11,6 +11,7 @@ License: GPL
 Group: Games/Arcade
 Url: http://xblast.sf.net
 BuildRequires:   X11-devel 
+BuildRoot: %{_tmppath}/%{name}-buildroot
 
 
 %description
