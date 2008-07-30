@@ -1,6 +1,6 @@
 %define name xblast
 %define version 2.10.0
-%define release %mkrel 1
+%define release %mkrel 3
 
 Summary: XBlast TNT a bomberman like game (Multiplayer)
 Name: %{name}
