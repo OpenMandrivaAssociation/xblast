@@ -1,13 +1,13 @@
 %define name xblast
-%define version 2.10.0
-%define release %mkrel 4
+%define version 2.10.4
+%define release %mkrel 1
 
 Summary: XBlast TNT a bomberman like game (Multiplayer)
 Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: %{name}-complete-sounds-%{version}.tar.bz2
-License: GPL
+License: GPLv2+
 Group: Games/Arcade
 Url: http://xblast.sf.net
 BuildRequires:   X11-devel 
@@ -31,6 +31,8 @@ players. It was inspired by the video/computer game Bomberman (Dynablaster).
 rm -rf $RPM_BUILD_ROOT
 
 %makeinstall  game_datadir=$RPM_BUILD_ROOT%{_gamesdatadir}/XBlast-TNT
+
+%{find_lang} %{name}
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
@@ -57,7 +59,7 @@ EOF
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,0755)
 %doc README NEWS COPYING AUTHORS
 %{_bindir}/xblast
