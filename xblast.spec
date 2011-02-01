@@ -1,16 +1,18 @@
 %define name xblast
 %define version 2.10.4
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: XBlast TNT a bomberman like game (Multiplayer)
 Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: %{name}-complete-sounds-%{version}.tar.bz2
+Patch0: xblast-complete-sounds-2.10.4-localedir.patch
 License: GPLv2+
 Group: Games/Arcade
 Url: http://xblast.sf.net
-BuildRequires:   X11-devel 
+BuildRequires: libx11-devel
+BuildRequires: libxt-devel
 BuildRoot: %{_tmppath}/%{name}-buildroot
 
 
@@ -20,26 +22,25 @@ graphics. The game can be played with at least two players and up to six
 players. It was inspired by the video/computer game Bomberman (Dynablaster).
 
 %prep
-
 %setup -q
+%patch0 -p0
 
 %build
-
-%configure  --enable-sound --with-otherdatadir=%{_gamesdatadir}/XBlast-TNT/
+autoreconf -fi
+%configure2_5x --bindir=%{_gamesbindir} --enable-sound --with-otherdatadir=%{_gamesdatadir}/XBlast-TNT
+%make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%makeinstall  game_datadir=$RPM_BUILD_ROOT%{_gamesdatadir}/XBlast-TNT
+%makeinstall_std
 
 %{find_lang} %{name}
 
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications/
 cat << EOF > %buildroot%{_datadir}/applications/mandriva-%{name}.desktop
 [Desktop Entry]
 Type=Application
-Exec=%{_bindir}/%{name}
+Exec=%{_gamesbindir}/%{name}
 Icon=arcade_section
 Categories=Game;ArcadeGame;
 Name=X blast
@@ -62,11 +63,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(-,root,root,0755)
 %doc README NEWS COPYING AUTHORS
-%{_bindir}/xblast
-%{_bindir}/xbsndsrv
-%{_gamesdatadir}/XBlast-TNT/level/
-%{_gamesdatadir}/XBlast-TNT/image/
-%{_gamesdatadir}/XBlast-TNT/sounds/
-%dir %{_gamesdatadir}/XBlast-TNT
+%{_gamesbindir}/xblast
+%{_gamesbindir}/xbsndsrv
+%{_gamesdatadir}/XBlast-TNT
 %{_datadir}/applications/mandriva-*.desktop
 
