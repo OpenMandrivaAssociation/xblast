@@ -1,0 +1,21 @@
+--- Makefile.am.localedir	2011-02-01 18:32:54.000000000 +0100
++++ Makefile.am	2011-02-01 18:33:10.000000000 +0100
+@@ -82,7 +82,6 @@
+ xbsndsrv_SOURCES = xbsndsrv.c snd.h 
+ 
+ game_datadir=@game_datadir@
+-localedir = $(game_datadir)/locale
+ DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+ 
+ install-data-local:
+--- po/Makefile.in.in.localedir	2011-02-01 18:46:19.000000000 +0100
++++ po/Makefile.in.in	2011-02-01 18:46:37.000000000 +0100
+@@ -24,7 +24,7 @@
+ prefix = @prefix@
+ exec_prefix = @exec_prefix@
+ datadir = @datadir@
+-localedir = $(datadir)/locale
++localedir = @localedir@
+ gettextsrcdir = $(datadir)/gettext/po
+ 
+ INSTALL = @INSTALL@
