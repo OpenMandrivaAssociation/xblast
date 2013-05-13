@@ -1,6 +1,6 @@
 %define name xblast
 %define version 2.10.4
-%define release %mkrel 2
+%define release  3
 
 Summary: XBlast TNT a bomberman like game (Multiplayer)
 Name: %{name}
@@ -13,7 +13,6 @@ Group: Games/Arcade
 Url: http://xblast.sf.net
 BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(xt)
-BuildRoot: %{_tmppath}/%{name}-buildroot
 
 
 %description
