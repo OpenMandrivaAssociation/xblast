@@ -11,8 +11,8 @@ Patch0: xblast-complete-sounds-2.10.4-localedir.patch
 License: GPLv2+
 Group: Games/Arcade
 Url: http://xblast.sf.net
-BuildRequires: libx11-devel
-BuildRequires: libxt-devel
+BuildRequires: pkgconfig(x11)
+BuildRequires: pkgconfig(xt)
 BuildRoot: %{_tmppath}/%{name}-buildroot
 
 
