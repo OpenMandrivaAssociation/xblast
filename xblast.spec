@@ -10,7 +10,7 @@ Source0: %{name}-complete-sounds-%{version}.tar.bz2
 Patch0: xblast-complete-sounds-2.10.4-localedir.patch
 License: GPLv2+
 Group: Games/Arcade
-Url: http://xblast.sf.net
+Url: https://xblast.sf.net
 BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(xt)
 
